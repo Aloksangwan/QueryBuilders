@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About — Query Builder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --qb-orange:#ea580c;
+            --qb-orange-light:#fb923c;
+            --qb-orange-soft:#fff7ed;
+            --qb-ink:#1f2937;
+            --qb-muted:#6b7280;
+        }
+
+        *{font-family:'Inter',sans-serif;}
+        body{background:#fffdfb;color:var(--qb-ink);}
+        h1,h5,.section-title{font-family:'Sora',sans-serif;}
+
+        .navbar{
+            background:#fff;
+            box-shadow:0 4px 18px rgba(234,88,12,.08);
+        }
+
+        .navbar-brand{
+            font-weight:800;
+            font-size:1.4rem;
+            color:var(--qb-orange)!important;
+            display:flex;
+            align-items:center;
+            gap:8px;
+        }
+
+        .navbar-brand .logo-badge{
+            background:linear-gradient(135deg,var(--qb-orange),var(--qb-orange-light));
+            color:#fff;
+            width:38px;
+            height:38px;
+            border-radius:11px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .navbar .nav-link{
+            color:var(--qb-ink)!important;
+            font-weight:600;
+            margin:0 4px;
+        }
+
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active{
+            color:var(--qb-orange)!important;
+        }
+
+        .hero{
+            text-align:center;
+            padding:70px 20px 40px;
+            background:linear-gradient(135deg,#fff7ed,#ffffff);
+            border-bottom:1px solid #fde6d3;
+        }
+
+        .hero h1{
+            font-size:2.8rem;
+            font-weight:800;
+        }
+
+        .hero h1 span{
+            color:var(--qb-orange);
+        }
+
+        .hero p{
+            color:var(--qb-muted);
+            max-width:750px;
+            margin:14px auto 0;
+        }
+
+        .about-card{
+            background:#fff;
+            border-radius:20px;
+            padding:28px;
+            border:1px solid #f3e3d6;
+            transition:.3s;
+            height:100%;
+            box-shadow:0 6px 18px rgba(31,41,55,.05);
+        }
+
+        .about-card:hover{
+            transform:translateY(-8px);
+            box-shadow:0 18px 38px rgba(234,88,12,.16);
+        }
+
+        .about-card .icon{
+            width:60px;
+            height:60px;
+            border-radius:16px;
+            background:var(--qb-orange-soft);
+            color:var(--qb-orange);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:1.6rem;
+            margin-bottom:16px;
+        }
+
+        .about-card h5{
+            font-weight:700;
+        }
+
+        .about-card p{
+            color:var(--qb-muted);
+        }
+
+        strong{color:var(--qb-orange);}
+
+        .section-title{
+            text-align:center;
+            font-weight:800;
+            margin:56px 0 30px;
+        }
+
+        .highlight-card{
+            background:var(--qb-orange-soft);
+            border-left:5px solid var(--qb-orange);
+            padding:28px;
+            border-radius:16px;
+            color:#374151;
+            line-height:1.7;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <span class="logo-badge"><i class="fas fa-database"></i></span>
+            Query Builder
+        </a>
+
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="nav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{% url 'about' %}">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Discover <span>Query Builder Platform</span></h1>
+    <p>
+        A modern educational management system designed to transform how learning content is created,
+        organized, accessed, and shared among students, tutors, and administrators in a structured digital environment.
+    </p>
+</div>
+
+<!-- CONTENT -->
+<div class="container pb-5">
+
+    <!-- SECTION TITLE -->
+    <div class="section-title">Platform Overview</div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6">
+            <div class="about-card">
+                <div class="icon"><i class="fas fa-bullseye"></i></div>
+                <h5>Purpose of the System</h5>
+                <p>
+                    Query Builder is developed to solve the problem of scattered educational resources.
+                    It provides a <strong>centralized platform</strong> where structured learning data can be stored, managed, and accessed efficiently.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="about-card">
+                <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                <h5>Educational Focus</h5>
+                <p>
+                    The platform supports academic learning by organizing content into categories such as
+                    <strong>Art, Mathematics, and Technology</strong>, making knowledge easier to explore and understand.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SECTION -->
+    <div class="section-title">Core Features</div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6">
+            <div class="about-card">
+                <div class="icon"><i class="fas fa-search"></i></div>
+                <h5>Smart Search System</h5>
+                <p>
+                    Users can quickly find relevant information using an intelligent search system that
+                    filters and retrieves structured data within seconds.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="about-card">
+                <div class="icon"><i class="fas fa-layer-group"></i></div>
+                <h5>Structured Data Management</h5>
+                <p>
+                    All educational resources are stored in a structured format, ensuring consistency,
+                    clarity, and easy retrieval of information.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="about-card">
+                <div class="icon"><i class="fas fa-users"></i></div>
+                <h5>Role-Based Access Control</h5>
+                <p>
+                    Different users such as <strong>students, tutors, and admins</strong> have controlled access
+                    based on their roles to maintain security and integrity.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="about-card">
+                <div class="icon"><i class="fas fa-cloud"></i></div>
+                <h5>Scalable Architecture</h5>
+                <p>
+                    Built using modern web technologies, the system is scalable and can handle
+                    increasing amounts of data and users efficiently.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- WHY SECTION -->
+    <div class="section-title">Why This System Matters</div>
+
+    <div class="highlight-card">
+        <p class="mb-0">
+            In traditional learning environments, information is often scattered across files, notes, and disconnected systems.
+            Query Builder solves this problem by introducing a centralized digital ecosystem that improves organization, accessibility,
+            and collaboration. It enhances learning efficiency by allowing users to manage and retrieve educational content quickly.
+            Built using <strong>Django</strong> and <strong>Bootstrap</strong>, the platform demonstrates modern web development principles,
+            including scalability, modular design, and user-centered development.
+        </p>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

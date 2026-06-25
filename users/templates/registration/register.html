@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register — Query Builder</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root{--qb-orange:#ea580c;--qb-orange-light:#fb923c;--qb-orange-soft:#fff7ed;--qb-ink:#1f2937;--qb-muted:#6b7280;}
+        *{font-family:'Inter',sans-serif;}
+        body{background:linear-gradient(135deg,#fff7ed,#fffdfb);min-height:100vh;color:var(--qb-ink);padding-top:90px;}
+        h3,.brand{font-family:'Sora',sans-serif;}
+
+        .navbar{background:#fff;box-shadow:0 4px 18px rgba(234,88,12,.08);}
+        .navbar-brand{font-weight:800;font-size:1.4rem;color:var(--qb-orange)!important;display:flex;align-items:center;gap:8px;}
+        .navbar-brand .logo-badge{background:linear-gradient(135deg,var(--qb-orange),var(--qb-orange-light));color:#fff;width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;}
+        .navbar .nav-link{color:var(--qb-ink)!important;font-weight:600;margin:0 4px;}
+        .navbar .nav-link:hover,.navbar .nav-link.active{color:var(--qb-orange)!important;}
+
+        .register-card{max-width:520px;margin:auto;background:#fff;border-radius:24px;box-shadow:0 20px 50px rgba(234,88,12,.15);border:1px solid #fde6d3;overflow:hidden;}
+        .register-header{background:linear-gradient(135deg,var(--qb-orange),var(--qb-orange-light));text-align:center;padding:30px;color:#fff;}
+        .register-header h3{margin:0;font-weight:800;}
+        .card-body{padding:34px;}
+        .form-label{font-weight:600;color:#374151;}
+        .form-control{border:1px solid #f0d3bd;border-radius:10px;}
+        .form-control:focus{border-color:var(--qb-orange);box-shadow:0 0 0 .2rem rgba(249,115,22,.18);}
+        .input-group-text{background:var(--qb-orange-soft);border:1px solid #f0d3bd;color:var(--qb-orange);}
+        .btn-cliffe{background:linear-gradient(135deg,var(--qb-orange),var(--qb-orange-light));color:#fff;font-weight:700;border-radius:50px;padding:12px;border:none;transition:.3s;}
+        .btn-cliffe:hover{color:#fff;transform:translateY(-2px);box-shadow:0 10px 22px rgba(234,88,12,.35);}
+        .form-text{color:var(--qb-muted);font-size:.85rem;}
+        .form-text ul{margin:5px 0 0 18px;}
+        .form-text li{margin-bottom:3px;}
+        .text-muted a{color:var(--qb-orange);text-decoration:none;font-weight:600;}
+        .text-muted a:hover{text-decoration:underline;}
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <span class="logo-badge"><i class="fas fa-database"></i></span> Query Builder
+        </a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{% url 'register' %}">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+<div class="register-card mt-4">
+    <div class="register-header">
+        <h3><i class="fas fa-user-plus me-2"></i>Create Your Account</h3>
+    </div>
+    <div class="card-body">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" name="username" class="form-control" required>
+                </div>
+                <div class="form-text">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <input type="password" name="password1" class="form-control" required>
+                </div>
+                <div class="form-text">
+                    <ul>
+                        <li>At least 8 characters long</li>
+                        <li>Cannot be too similar to your username</li>
+                        <li>Use a strong password</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Confirm Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-check-double"></i></span>
+                    <input type="password" name="password2" class="form-control" required>
+                </div>
+                <div class="form-text">Enter the same password again for verification.</div>
+            </div>
+            <button type="submit" class="btn btn-cliffe w-100"><i class="fas fa-user-check me-1"></i> Register</button>
+        </form>
+
+        <div class="text-center mt-4 text-muted">
+            <small>Already have an account? <a href="{% url 'login' %}">Login here</a></small>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
